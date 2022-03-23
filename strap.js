@@ -1,4 +1,4 @@
-module.exports = async() =>{
+module.exports = async ()=> {
 
 	const Category = require('./models/Categories');
 	const Transaction = require('./models/Transactions');
@@ -6,30 +6,29 @@ module.exports = async() =>{
 
 	console.log("Before foreignKey", Wallet)
 
-	Wallet.hasMany(Transaction, {as: "Transactions", foreignKey: "walletId"})
-	Transaction.belongsTo(Wallet, {as: "Wallets", foreignKey: "walletId"})
+	Wallet.hasMany(Transaction, {foreignKey: "walletId"})
+	Transaction.belongsTo(Wallet, {foreignKey: "walletId"})
 	
 	const errHandler = (err) =>{
 		console.error("Error::", err);
 	};
-
-	const wallet = await Wallet.create({
-		name: "MYBOK"
-	}).catch(errHandler);
-
+	
+	const wallet = await Wallet.build({name: "MYBOK"})
+	console.log(wallet.name);
+	await wallet.save();
 	
 
 
-	const transaction = await Transaction.create({
-		type: "income",
-		walletId: wallet.id
-	})//.catch(errHandler);
+// 	const transaction = await Transaction.create({
+// 		type: "income",
+// 		walletId: wallet.id
+// 	})//.catch(errHandler);
 
 
-	const wallets = await Transaction.findAll({
-		where: {type: "MYBOK"},
-		include: [{ model: Transaction, as: "Transactions"}]
-	})//.catch(errHandler);
+// 	const wallets = await Transaction.findAll({
+// 		where: {type: "MYBOK"},
+// 		include: [{ model: Transaction, as: "Transactions"}]
+// 	})//.catch(errHandler);
 
-	console.log("MYBOK: ", wallets)
-}
+// 	console.log("MYBOK: ", wallets)
+ }
