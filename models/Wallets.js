@@ -12,4 +12,5 @@ module.exports = sequelize.define("Wallets", {
     allowNull:false,
     unique: true
   }
+  
 })

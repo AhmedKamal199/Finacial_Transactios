@@ -16,5 +16,7 @@ module.exports = sequelize.define("Transactions", {
   amount:{
     type: Sequelize.INTEGER(11),
     default: 0
-  }
+  },
+  walletId: Sequelize.INTEGER(11),
+  cateId: Sequelize.INTEGER(11)
 })

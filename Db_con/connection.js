@@ -6,7 +6,13 @@ const sequelize= new Sequelize("Financial_Transactions",
 	{
 		host: '127.0.0.1',
 		 dialect:"mysql", 
-		 operatorsAliasses: false 
+		 operatorsAliasses: false ,
+		 pool:{
+		 	max:5,
+		 	min:0,
+		 	aquire:30000,
+		 	idle: 10000
+		 }
 	})
 
 module.exports = sequelize;
