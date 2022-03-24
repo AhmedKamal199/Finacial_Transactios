@@ -19,4 +19,4 @@ module.exports = sequelize.define("Transactions", {
   },
   walletId: Sequelize.INTEGER(11),
   cateId: Sequelize.INTEGER(11)
-})
+},{freezeTableName:true})

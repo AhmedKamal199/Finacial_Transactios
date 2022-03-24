@@ -13,9 +13,7 @@ module.exports = async ()=> {
 		console.error("Error::", err);
 	};
 	
-	const wallet = await Wallet.build({name: "MYBOK"})
-	console.log(wallet.name);
-	await wallet.save();
+	
 	
 
 

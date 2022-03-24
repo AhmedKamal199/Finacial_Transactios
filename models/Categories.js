@@ -11,4 +11,4 @@ module.exports = sequelize.define("Categories", {
     type:Sequelize.STRING(50),
     allowNull:false,
     unique: true
-  }})
+  }},{freezeTableName:true})

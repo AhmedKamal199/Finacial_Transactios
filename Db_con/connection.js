@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 require("dotenv").config();
-const password = "finpdueiwoejurpajfldone.ejlrwelj3uutorjurotulrtgihnyildjfljdfldj1309782"
-const sequelize= new Sequelize("Financial_Transactions", 
+const password = "Password@1234"
+const sequelize= new Sequelize("Finacial_Transactions", 
 	"fin",password,
 	{
 		host: '127.0.0.1',
@@ -11,10 +11,11 @@ const sequelize= new Sequelize("Financial_Transactions",
 		 	max:5,
 		 	min:0,
 		 	aquire:30000,
-		 	idle: 10000
-		 }
-	})
+		 	idle: 10000,
+		 },
 
+	})
+sequelize.sync({});
 module.exports = sequelize;
 
 global.sequelize = sequelize;

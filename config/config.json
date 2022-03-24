@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "fin",
-    "password": "finpdueiwoejurpajfldone.ejlrwelj3uutorjurotulrtgihnyildjfljdfldj1309782",
+    "password": "Password@1234",
     "database": "Finacial_Transactions",
     "host": "127.0.0.1",
     "dialect": "mysql"
