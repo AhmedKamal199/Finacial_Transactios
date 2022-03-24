@@ -15,7 +15,7 @@ const sequelize= new Sequelize("Finacial_Transactions",
 		 },
 
 	})
-sequelize.sync({});
+
 module.exports = sequelize;
 
 global.sequelize = sequelize;

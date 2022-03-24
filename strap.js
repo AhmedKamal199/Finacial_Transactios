@@ -13,20 +13,20 @@ module.exports = async ()=> {
 		console.error("Error::", err);
 	};
 	
+	const wallet = await Wallet.create({ name:"Cash" });
 	
-	
 
 
-// 	const transaction = await Transaction.create({
-// 		type: "income",
-// 		walletId: wallet.id
-// 	})//.catch(errHandler);
+	const transaction = await Transaction.create({
+		type: "income",
+		walletId: wallet.id
+	}).catch(errHandler);
 
 
-// 	const wallets = await Transaction.findAll({
-// 		where: {type: "MYBOK"},
-// 		include: [{ model: Transaction, as: "Transactions"}]
-// 	})//.catch(errHandler);
+	const wallets = await Transaction.findAll({
+		where: {type: "MYBOK"},
+		include: [{ model: Transaction, as: "Transactions"}]
+	}).catch(errHandler);
 
-// 	console.log("MYBOK: ", wallets)
+	console.log("MYBOK: ", wallets)
  }
