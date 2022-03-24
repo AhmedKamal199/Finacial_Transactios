@@ -9,6 +9,9 @@ module.exports = async ()=> {
 	Wallet.hasMany(Transaction, {foreignKey: "walletId"})
 	Transaction.belongsTo(Wallet, {foreignKey: "walletId"})
 	
+	Category.hasMany(Transaction, {foreignKey: "cateId"})
+	Transaction.belongsTo(Category, {foreignKey: "cateId"})
+
 	const errHandler = (err) =>{
 		console.error("Error::", err);
 	};
@@ -23,10 +26,10 @@ module.exports = async ()=> {
 	}).catch(errHandler);
 
 
-	const wallets = await Transaction.findAll({
-		where: {type: "MYBOK"},
-		include: [{ model: Transaction, as: "Transactions"}]
-	}).catch(errHandler);
+	// const wallets = await Transaction.findAll({
+	// 	where: {type: "MYBOK"},
+	// 	include: [{ model: Transaction, as: "Transactions"}]
+	// }).catch(errHandler);
 
-	console.log("MYBOK: ", wallets)
+	// console.log("MYBOK: ", wallets)
  }

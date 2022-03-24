@@ -13,7 +13,6 @@ module.exports = {
   type: {
     type:Sequelize.STRING(50),
     allowNull:false,
-    unique: true
   },
   amount: {
    type:Sequelize.INTEGER(11),
