@@ -29,9 +29,9 @@ const diff = async(req,res)=>{
 				category.amount = 0;
 		}
 		return res.json(category)
-	}catch(error){
-		console.log(error);
-		res.status(500).json(error);
+	}catch(err){
+		console.log(err);
+		res.status(500).json(err);
 	}
 }
 
