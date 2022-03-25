@@ -7,7 +7,7 @@ app.get("/",(req,res)=>{
 });
 // DB connections
 require("./Db_con/connection");
-
+// require("./controllers/testDB")();
 
 const Wallet = require('./models/Wallets');
 
