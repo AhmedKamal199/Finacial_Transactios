@@ -35,17 +35,18 @@ const diff = async(req,res)=>{
 	const  cateId  = req.query.id_c;
 	console.log(cateId)
 	try{
-		const transaction = await Transaction.create({ type, walletId, cateId, amount:0 });
+		const transaction = await Transaction.create({ type, walletId, cateId, amount });
 		switch(transaction.type){
 			case "Income":
-					transaction.amount += amount;
+					transaction.amount += 0;
 				break;
 			case "Expeness":
-				transaction.amount -= amount;
+				transaction.amount -= 0;
 				console.log(transaction.amount)
 				break;
 			default:
 				transaction.amount = 0;
+				break;
 		}
 		console.log(transaction.amount)
 		
