@@ -13,23 +13,8 @@ Category.hasMany(Transaction, {foreignKey: "cateId"})
 Transaction.belongsTo(Category, {foreignKey: "cateId"})
 
 
-// const NewIn = async()=>{
-// 	try{
-// 		const category = await Category.create({ name:"Transport" });
-// 		console.log(category)
-// 		const wallet = await Wallet.create({ name:"MYBOK" });
-// 		console.log(wallet)
-// 		}catch(err){
-// 		console.log(err);
-// 	}
-// }
 
-// NewIn();
-
-
-
-const diff = async(req,res)=>{
-	//require("./testDB")();
+const NewTransaction = async(req,res)=>{
 	const { type, amount } = req.body;
 	const  walletId  = req.params.id_w;
 	const  cateId  = req.query.id_c;
@@ -44,6 +29,14 @@ const diff = async(req,res)=>{
 				transaction.amount -= 0;
 				console.log(transaction.amount)
 				break;
+			case "Transfer":
+				transaction.amount -= amount;
+				Transaction.update({ amount: transaction.amount},{ where: {id: transaction.id} })
+				const { receivedWallet } = req.body;
+				const Rec = await Transaction.findOne({where: {walletId: receivedWallet}});
+				Rec.amount += amount
+				Transaction.update({ amount: Rec.amount},{ where: {id: Rec.id} })
+				return res.json({res: Rec.amount, Tx: transaction.amount})
 			default:
 				transaction.amount = 0;
 				break;
@@ -56,7 +49,14 @@ const diff = async(req,res)=>{
 		res.status(500).json(err);
 	}
 }
+const TransferWallet = async(req,res)=>{
+	const { receivedWallet } = req.body;
+	const Rec = await Transaction.findAll({where: {id: receivedWallet}});
+	console.log(Rec.toJSON());
+	res.json({res: Rec})
 
+}
 module.exports = {
-	diff
+	NewTransaction,
+	TransferWallet
 }
