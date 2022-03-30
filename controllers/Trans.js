@@ -53,5 +53,4 @@ const NewTransaction = async(req,res)=>{
 
 module.exports = {
 	NewTransaction,
-	TransferWallet
 }

@@ -24,6 +24,12 @@ const gui = async(req,res)=>{
 	res.json({wallets})
 }
 
+const getWallets = async(req,res)=>{
+	await Wallet.findAll({})
+	.then(wallets => res.json(wallets));
+
+}
 module.exports = {
-	gui
+	gui,
+	getWallets
 }
