@@ -11,5 +11,6 @@ module.exports = sequelize.define("Wallets", {
     type:Sequelize.STRING(50),
     allowNull:false,
     unique: true
-  } 
+  },
+  	amount:Sequelize.INTEGER(20) 
 },{tableName: "Wallets",freezeTableName:true},)

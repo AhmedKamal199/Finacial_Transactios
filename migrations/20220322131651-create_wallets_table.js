@@ -14,6 +14,7 @@ module.exports = {
     allowNull:false,
     unique: true
   },
+  amount:Sequelize.INTEGER(20),
   createdAt: Sequelize.DATE,
   updatedAt: Sequelize.DATE
 })
