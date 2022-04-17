@@ -9,11 +9,8 @@ router.route("/transaction/wa/:id_w/ca/").post(NewTransaction);
 
 router.route("/test/wa/:id_w/ca/").post(test); // Test API
 
-
-
 router.route("/").get(gui)
 router.route("/wallets").get(getWallets)
-
 // router.route("/transaction").get(Types)
 
 module.exports = router;
