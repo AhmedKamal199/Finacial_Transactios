@@ -1,14 +1,15 @@
 const express = require("express");
-const app = express();
+
 const cors = require("cors");
 
-app.use(express.static("./client"));
-app.use(express.json());
+//app.use(express.static("./client1"));
+const app = express();
 app.use(cors("*"));
+app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/a", (req, res) => {
   const name = "akm";
-  res.send("hello");
+  res.json({ name });
 });
 
 // DB connections
