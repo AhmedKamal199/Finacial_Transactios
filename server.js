@@ -18,12 +18,12 @@ require("./Db_con/connection");
 
 const Wallet = require("./models/Wallets");
 
-const port = 5000;
+const port = 5500;
 
 app.use("/api", require("./routes/main"));
 
 async function run() {
-  await sequelize.sync({ force: true }).then(() => console.log("conneted"));
+  await sequelize.sync({ force: false }).then(() => console.log("conneted"));
   app.listen(port, console.log(`Server is run on port ${port}`));
 }
 
