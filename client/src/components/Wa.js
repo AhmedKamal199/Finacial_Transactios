@@ -4,10 +4,12 @@ import axios from "axios";
 const Wa = () => {
   const [name, Setname] = useState("");
   const [load, reload] = useState(false);
+  const [wa, setWallet] = useState([]);
   useEffect(async () => {
-    const { data } = await axios.get(`${url}/api/`);
-    console.log(data.wallets[0]);
-    Setname(data.name);
+    const { data } = await axios.get(`${url}/api/wallets`);
+    console.log(data.wallets);
+    const Wallets = data.wallets;
+    console.log(Wallets);
   }, []);
   return (
     <div className="wa-con">
@@ -17,8 +19,6 @@ const Wa = () => {
           <div className="item">
             <h1 className="test"></h1>
           </div>
-          <div className="item"></div>
-          <div className="item"></div>
         </div>
       </div>
     </div>
