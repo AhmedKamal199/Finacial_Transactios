@@ -4,10 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "reactstrap";
 import Wa from "./components/Wa";
 import Footer from "./components/Footer";
+import Showcase from "./components/Showcase";
 function App() {
   return (
     <div className="App">
       <AppNavbar />
+      <Showcase />
       <Wa />
       <Footer />
       {/* <Container>

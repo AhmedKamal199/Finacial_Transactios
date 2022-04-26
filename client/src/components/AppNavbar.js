@@ -6,10 +6,7 @@ const AppNavbar = () => {
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
         <div className="container">
           <a href="#" className="navbar-brand">
-            <i
-              className="bi bi-wallet mx-3 bg-"
-              style="font-size: 1.5rem; color: white;"
-            ></i>
+            <i className="bi bi-wallet mx-3 bg-"></i>
             Finacial Transactions
           </a>
           <button

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import url from "../config";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 const Wa = () => {
   // const [name, Setname] = useState("");
   const [load, reload] = useState(false);
@@ -13,7 +14,7 @@ const Wa = () => {
   }, [wa.length]);
   console.log(wa);
   return (
-    <div className="wa-con">
+    <div className="mt-5 wa-con">
       <div className="contanier">
         <h2 className="sub">Wallets</h2>
         <button>Add Wallet</button>
