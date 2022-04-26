@@ -14,19 +14,33 @@ const Wa = () => {
   }, [wa.length]);
   console.log(wa);
   return (
-    <div className="mt-5 wa-con">
-      <div className="contanier">
-        <h2 className="sub">Wallets</h2>
-        <button>Add Wallet</button>
-        <div className="items">
-          {wa.map(({ id, name, amount }) => (
-            <div className="item" key={id}>
-              <h1 className="test"> {name} </h1>
-            </div>
-          ))}
+    <>
+      <section className="my-5 border border-secondary">
+        {/* <!-- <div className="container"> --> */}
+        <div className="row lead m-2 ">
+          <div className="col">Name</div>
+          <div className="col">Amount</div>
+          <div className="col">Last Transaction</div>
         </div>
-      </div>
-    </div>
+        {wa.map(({ id, name, amount }) => (
+          <div key={id} className="row bg-secondary  p-2 rounded-pill">
+            <div className="col">
+              <span className="lead">
+                <img
+                  src="favicon.ico"
+                  style={{ width: "25px", display: "inline-block" }}
+                  alt=""
+                  className="mx-2"
+                />
+                {name}
+              </span>
+            </div>
+            <div className="col lead">${amount}</div>
+            <div className="col">Last Transaction</div>
+          </div>
+        ))}
+      </section>
+    </>
   );
 };
 
