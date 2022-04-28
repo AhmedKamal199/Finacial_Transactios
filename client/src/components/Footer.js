@@ -6,11 +6,11 @@ const Footer = () => {
     <div>
       <footer
         id="about"
-        class="p-5 text-center bg-dark text-white position-relative"
+        className="p-5 text-center bg-dark text-white position-relative"
       >
-        <div class="container">
-          <p class="lead">Copyright &copy; 2021 Finacial Transactions</p>
-          <a href="#" class="position-absolute bottom-0 p-5 end-0">
+        <div className="container">
+          <p className="lead">Copyright &copy; 2022 Finacial Transactions</p>
+          <a href="#" className="position-absolute bottom-0 p-5 end-0">
             <ArrowUpCircle size={50} />
           </a>
         </div>
@@ -20,7 +20,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-{
-  /* <i class="bi bi-arrow-up-circle h1"></i> */
-}
