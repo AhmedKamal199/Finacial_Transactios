@@ -2,6 +2,8 @@ const Category = require("../models/Categories");
 const Transaction = require("../models/Transactions");
 const Wallet = require("../models/Wallets");
 
+const sequelize = require("sequelize");
+
 Wallet.hasMany(Transaction, { foreignKey: "walletId" });
 Transaction.belongsTo(Wallet, { foreignKey: "walletId" });
 
@@ -26,7 +28,20 @@ const gui = async (req, res) => {
 const getWallets = async (req, res) => {
   await Wallet.findAll({}).then(wallets => res.json({ wallets }));
 };
+
+const getCategories = async (req, res) => {
+  await Category.findAll({}).then(categories => res.json({ categories }));
+};
+
+const getTransactions = async (req, res) => {
+  await Transaction.findAll({}).then(transactions =>
+    res.json({ transactions })
+  );
+};
+
 module.exports = {
   gui,
-  getWallets
+  getWallets,
+  getCategories,
+  getTransactions
 };
