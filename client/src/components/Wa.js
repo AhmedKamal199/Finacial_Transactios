@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import url from "../config";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import CategoryModal from "./CategoryModal";
 import {
   Pen,
   PencilFill,
@@ -43,6 +44,8 @@ const Wa = () => {
         </div>
 
         <div className="m-2 d-sm-flex align-items-center justify-content-end">
+          {/* <button className="btn bg-warning ">Add Category</button> */}
+          {/* <CategoryModal /> */}
           <button className="btn bg-warning ">Add Category</button>
           <button className="btn bg-dark text-light mx-2">
             Add Transaction

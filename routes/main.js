@@ -1,7 +1,12 @@
 const router = require("express").Router();
 const { NewWallet, NewCategory, test } = require("../controllers/New");
 const { NewTransaction } = require("../controllers/Trans");
-const { gui, getWallets } = require("../controllers/getting");
+const {
+  gui,
+  getWallets,
+  getCategories,
+  getTransactions
+} = require("../controllers/getting");
 
 router.route("/wallet").post(NewWallet);
 router.route("/category").post(NewCategory);

@@ -31,7 +31,7 @@ const AppNavbar = () => {
               </li>
               <li className="nav-item">
                 <a href="#about" className="nav-link">
-                  Category
+                  Categories
                 </a>
               </li>
             </ul>
