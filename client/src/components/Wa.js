@@ -9,6 +9,8 @@ import {
   GraphUpArrow,
   GraphDownArrow
 } from "react-bootstrap-icons";
+import TransactionModal from "./TransactionModal";
+import WalletModal from "./WalletModal";
 const Wa = () => {
   // const [name, Setname] = useState("");
   const [load, reload] = useState(false);
@@ -44,13 +46,9 @@ const Wa = () => {
         </div>
 
         <div className="m-2 d-sm-flex align-items-center justify-content-end">
-          {/* <button className="btn bg-warning ">Add Category</button> */}
-          {/* <CategoryModal /> */}
-          <button className="btn bg-warning ">Add Category</button>
-          <button className="btn bg-dark text-light mx-2">
-            Add Transaction
-          </button>
-          <button className="btn bg-primary text-light">Add Wallet</button>
+          <CategoryModal />
+          <TransactionModal />
+          <WalletModal />
         </div>
         {wa.map(({ id, name, amount, Transactions }) => (
           <div key={id} className="row bg-secondary  p-2 rounded">
