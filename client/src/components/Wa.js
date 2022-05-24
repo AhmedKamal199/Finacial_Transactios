@@ -13,15 +13,14 @@ import TransactionModal from "./TransactionModal";
 import WalletModal from "./WalletModal";
 const Wa = () => {
   // const [name, Setname] = useState("");
-  const [load, reload] = useState(false);
   const [wa, setWallet] = useState([]);
   const [ca, setCategory] = useState([]);
   const [trans, setTrans] = useState([]);
   const [onNew, setnew] = useState(true);
   useEffect(async () => {
-    const { data } = await axios.get(`${url}/api`);
-    const Wallets = data.wallets;
     if (onNew) {
+      const { data } = await axios.get(`${url}/api`);
+      const Wallets = data.wallets;
       Wallets.map(({ Transactions }) => {
         setTrans([...Transactions]);
       });
@@ -29,6 +28,7 @@ const Wa = () => {
 
       const Cdata = await axios.get(`${url}/api/categories`);
       const Categories = Cdata.data.categories;
+      setnew(false);
       setCategory([...Categories]);
     }
   }, [onNew]);
@@ -37,10 +37,8 @@ const Wa = () => {
     switch (type) {
       case "Income":
         return <GraphUpArrow color="green" />;
-        break;
       case "Express":
         return <GraphDownArrow color="red" />;
-        break;
     }
   };
   return (
@@ -111,7 +109,6 @@ const Wa = () => {
             </div>
           </div>
         ))}
-        {setnew(false)}
       </section>
     </>
   );

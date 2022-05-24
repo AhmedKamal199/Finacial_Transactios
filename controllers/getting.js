@@ -16,7 +16,7 @@ const errHandler = err => {
 
 const gui = async (req, res) => {
   const trans = await Transaction.findAll({});
-  const transaction = JSON.stringify(trans);
+  // const transaction = JSON.stringify(trans);
   const wallets = await Wallet.findAll({
     include: [{ model: Transaction, as: "Transactions", required: false }]
     // where: {id: walletId},
@@ -26,11 +26,11 @@ const gui = async (req, res) => {
 };
 
 const getWallets = async (req, res) => {
-  await Wallet.findAll({}).then(wallets => res.json({ wallets }));
+  return res.json({ wallets: await Wallet.findAll({}) });
 };
 
 const getCategories = async (req, res) => {
-  await Category.findAll({}).then(categories => res.json({ categories }));
+  return res.json(await Category.findAll({}));
 };
 
 const getTransactions = async (req, res) => {

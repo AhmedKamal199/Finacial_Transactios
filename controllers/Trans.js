@@ -27,10 +27,9 @@ const NewTransaction = async (req, res) => {
     const wallet = await Wallet.findOne({ where: { id: walletId } });
     switch (transaction.type) {
       case "Income":
-        transaction.amount += 0;
         break;
       case "Expeness":
-        transaction.amount -= 0;
+        transaction.amount *= -1;
         // Increase of the amount of the selected category
         const cateM = await Category.findOne({ where: { id: cateId } });
         cateM.amount += amount;
@@ -42,7 +41,7 @@ const NewTransaction = async (req, res) => {
         const Rec = await Wallet.findOne({ where: { id: receivedWallet } });
         // Add New transaction to the received Wallet which type is income
 
-        const RecT = await Transaction.create({
+        await Transaction.create({
           type: "Income",
           walletId: Rec.id,
           amount: transaction.amount
