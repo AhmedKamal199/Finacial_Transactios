@@ -9,7 +9,10 @@ import {
   Label,
   Input
 } from "reactstrap";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import url from "../config";
+
 const CategoryModal = () => {
   const [modal, setModal] = useState(false);
   const [name, setName] = useState("");
@@ -17,17 +20,18 @@ const CategoryModal = () => {
     setModal(!modal);
   }
 
-  function onSubmit(e) {
+  const onSubmit = async e => {
     e.preventDefault();
-    const newItem = {
+    const newCategory = {
       name
     };
+    await axios.post(`${url}/api/category`, newCategory);
     // Add item via addItem action
     //  addItem(newItem);
-    console.log(newItem);
+    console.log(newCategory);
     // Close modal
     toggle();
-  }
+  };
 
   return (
     <>
@@ -39,12 +43,12 @@ const CategoryModal = () => {
         <ModalBody>
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <Label for="name">name</Label>
+              <Label for="name">Name</Label>
               <Input
                 type="text"
                 name="name"
                 id="name"
-                placehodler="Category's Name"
+                placeholder="Category's Name"
                 onChange={e => setName(e.target.value)}
               ></Input>
               <Button color="dark" style={{ marginTop: "2rem" }} block>

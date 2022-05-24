@@ -10,26 +10,96 @@ import {
   Input
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-const TransactionModal = () => {
+import axios from "axios";
+import url from "../config";
+const TransactionModal = ({ Wal, Cat, onNew }) => {
   const [modal, setModal] = useState(false);
-  const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [amount, setAmount] = useState(0);
+  const [WalletId, setWalId] = useState(0);
+  const [CateId, setCatId] = useState("");
+  // const [New, setnew] = useState(false);
+
+  const ShowWallet = (
+    <select
+      class="custom-select m-2"
+      id="inputGroupSelect01"
+      onChange={e => setWalId(e.target.value)}
+    >
+      {Wal.map(({ id, name }) => (
+        <>
+          <option selected disabled hidden>
+            Choose...
+          </option>
+          <option key={id} value={id}>
+            {name}
+          </option>
+        </>
+      ))}
+    </select>
+  );
+
+  const RecWallet = (
+    <select class="custom-select m-2" id="inputGroupSelect01">
+      {Wal.map(({ id, name }) => (
+        <>
+          <option selected disabled hidden>
+            Choose...
+          </option>
+          <option
+            key={id}
+            value={id}
+            disabled={id == WalletId && true}
+            hidden={id == WalletId && true}
+          >
+            {name}
+          </option>
+        </>
+      ))}
+    </select>
+  );
+
+  const ShowCategories = (
+    <select
+      class="custom-select m-2"
+      id="inputGroupSelect01"
+      onChange={e => setCatId(e.target.value)}
+    >
+      {Cat.map(({ id, name }) => (
+        <>
+          <option selected disabled hidden>
+            Choose...
+          </option>
+          <option key={id} value={id}>
+            {name}
+          </option>
+        </>
+      ))}
+    </select>
+  );
+
   function toggle() {
     setModal(!modal);
   }
 
-  function onSubmit(e) {
+  const onSubmit = async e => {
     e.preventDefault();
-    const newItem = {
-      name
+    const newTransaction = {
+      type,
+      amount
     };
     // Add item via addItem action
+    await axios.post(
+      `${url}/api/transaction/wa/${WalletId}/ca?${CateId}`,
+      newTransaction
+    );
     //  addItem(newItem);
-    console.log(newItem);
+    console.log(newTransaction);
+    onNew = true;
+    console.log(onNew);
     // Close modal
     toggle();
-  }
+  };
   return (
     <>
       <button className="btn bg-dark text-light mx-2" onClick={toggle}>
@@ -40,29 +110,27 @@ const TransactionModal = () => {
         <ModalBody>
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <Label for="name">Name</Label>
-              <Input
-                type="text"
-                name="name"
-                id="item"
-                placehodler="Transaction's Name"
-                onChange={e => setName(e.target.value)}
-              ></Input>
               <Label>Transaction Type</Label>
               <select
                 class="custom-select m-2"
                 id="inputGroupSelect01"
                 onChange={e => setType(e.target.value)}
               >
-                <option selected>Choose...</option>
+                <option selected disabled hidden>
+                  Choose...
+                </option>
                 <option value="Income">Income</option>
                 <option value="Expeness">Expeness</option>
                 <option value="Transfer">Transfer</option>
               </select>
               <div className="row lead m-2 ">
-                <div className="col">Wallet Id</div>
-                {type === "Transfer" && <div className="col">Rec Wallet</div>}
-                {type === "Expeness" && <div className="col">Cate</div>}
+                <div className="col">
+                  {ShowWallet} id = {WalletId}
+                </div>
+                {type === "Transfer" && <div className="col">{RecWallet}</div>}
+                {type === "Expeness" && (
+                  <div className="col">{ShowCategories}</div>
+                )}
               </div>
               <Label for="Amount">Amount</Label>
               <Input

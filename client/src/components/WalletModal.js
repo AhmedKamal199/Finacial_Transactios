@@ -9,26 +9,30 @@ import {
   Label,
   Input
 } from "reactstrap";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import url from "../config";
 
-const WalletModal = () => {
+const WalletModal = ({ onNew }) => {
   const [modal, setModal] = useState(false);
   const [name, setName] = useState("");
   function toggle() {
     setModal(!modal);
   }
 
-  function onSubmit(e) {
+  const onSubmit = async e => {
     e.preventDefault();
-    const newItem = {
+    const newWallet = {
       name
     };
+    await axios.post(`${url}/api/wallet`, newWallet);
     // Add item via addItem action
     //  addItem(newItem);
-    console.log(newItem);
+    console.log(newWallet);
+    onNew = true;
     // Close modal
     toggle();
-  }
+  };
 
   return (
     <>
@@ -45,7 +49,7 @@ const WalletModal = () => {
                 type="text"
                 name="name"
                 id="name"
-                placehodler="Wallet's Name"
+                placeholder="Wallet's Name"
                 onChange={e => setName(e.target.value)}
               ></Input>
               <Button color="dark" style={{ marginTop: "2rem" }} block>

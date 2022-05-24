@@ -15,16 +15,23 @@ const Wa = () => {
   // const [name, Setname] = useState("");
   const [load, reload] = useState(false);
   const [wa, setWallet] = useState([]);
+  const [ca, setCategory] = useState([]);
   const [trans, setTrans] = useState([]);
+  const [onNew, setnew] = useState(true);
   useEffect(async () => {
     const { data } = await axios.get(`${url}/api`);
-
     const Wallets = data.wallets;
-    Wallets.map(({ Transactions }) => {
-      setTrans([...Transactions]);
-    });
-    setWallet([...Wallets]);
-  }, [wa.length]);
+    if (onNew) {
+      Wallets.map(({ Transactions }) => {
+        setTrans([...Transactions]);
+      });
+      setWallet([...Wallets]);
+
+      const Cdata = await axios.get(`${url}/api/categories`);
+      const Categories = Cdata.data.categories;
+      setCategory([...Categories]);
+    }
+  }, [onNew]);
 
   const tran = type => {
     switch (type) {
@@ -47,8 +54,8 @@ const Wa = () => {
 
         <div className="m-2 d-sm-flex align-items-center justify-content-end">
           <CategoryModal />
-          <TransactionModal />
-          <WalletModal />
+          <TransactionModal Wal={wa} Cat={ca} onNew={onNew} />
+          <WalletModal onNew={onNew} />
         </div>
         {wa.map(({ id, name, amount, Transactions }) => (
           <div key={id} className="row bg-secondary  p-2 rounded">
@@ -68,8 +75,8 @@ const Wa = () => {
               {Transactions.length === 0
                 ? "No Transactions Yet"
                 : (() => {
-                    console.log(Transactions[Transactions.length - 1].type);
-                    console.log(Transactions[Transactions.length - 1].amount);
+                    // console.log(Transactions[Transactions.length - 1].type);
+                    // console.log(Transactions[Transactions.length - 1].amount);
                     switch (Transactions[Transactions.length - 1].type) {
                       case "Income":
                         return (
@@ -104,6 +111,7 @@ const Wa = () => {
             </div>
           </div>
         ))}
+        {setnew(false)}
       </section>
     </>
   );
