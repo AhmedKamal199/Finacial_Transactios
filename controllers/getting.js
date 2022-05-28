@@ -34,9 +34,7 @@ const getCategories = async (req, res) => {
 };
 
 const getTransactions = async (req, res) => {
-  await Transaction.findAll({}).then(transactions =>
-    res.json({ transactions })
-  );
+	return res.json({ Transactions: await Transaction.findAll({})});
 };
 
 module.exports = {
