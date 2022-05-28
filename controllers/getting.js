@@ -30,7 +30,7 @@ const getWallets = async (req, res) => {
 };
 
 const getCategories = async (req, res) => {
-  return res.json(await Category.findAll({}));
+  return res.json({ Categories: await Category.findAll({})});
 };
 
 const getTransactions = async (req, res) => {
